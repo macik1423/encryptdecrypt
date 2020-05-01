@@ -29,13 +29,12 @@ public class Main {
                 alg = args[i + 1];
             }
         }
-        CryptOperation cryptOperation = null;
+        CryptOperation cryptOperation;
         if ("dec".equals(mode)) {
             cryptOperation = new Decrypt(text, fileNameIn, fileNameOut, key, alg);
         } else {
             cryptOperation = new Encrypt(text, fileNameIn, fileNameOut, key, alg);
         }
         cryptOperation.prepare();
-        cryptOperation.method(text);
     }
 }
