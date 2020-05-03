@@ -1,17 +1,20 @@
 package encryptdecrypt;
 
-public class Decrypt extends CryptOperation {
-    public Decrypt(String text, String fileNameIn, String fileNameOut, int key, String alg) {
-        super(text, fileNameIn, fileNameOut, key, alg);
+public class Decrypt extends CipherOperation {
+    private static final String UNICODE = "unicode";
+
+    public Decrypt(Parameter parameter) {
+        super(parameter);
     }
 
     @Override
-    String method(String text) {
+    public String cipherText(String text) {
         char[] messageArray = text.toCharArray();
         StringBuilder sb = new StringBuilder();
-        if (alg.equals("unicode")) {
+        int key = parameter.getKey();
+        if (UNICODE.equals(parameter.getAlg())) {
             for (char c : messageArray) {
-                sb.append((char) (c - this.key));
+                sb.append((char) (c - key));
             }
             return sb.toString();
         } else {
